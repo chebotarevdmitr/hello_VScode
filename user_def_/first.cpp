@@ -1,31 +1,38 @@
 #include <iostream>
+#include <cmath> // для sqrt
+
 using namespace std;
 
-int check_prime_number(int);
+bool isPrime(int number)
+{
+   if (number <= 1)
+   {
+      return false; // 0 и 1 не являются простыми
+   }
+   for (int i = 2; i <= sqrt(number); ++i)
+   {
+      if (number % i == 0)
+      {
+         return false;
+      }
+   }
+   return true;
+}
 
 int main()
 {
-   cout << "\tchecking for a prime number"   << endl;
+   cout << "\tПроверка на простое число" << endl;
    int number = 0;
-   cout << " \t Enter positive nember "      << endl;
+   cout << " \t Введите положительное целое число: " << endl;
    cin >> number;
 
-    if(check_prime_number (number) == true) {
-       cout << number << "  -This is a simple number "     << endl; // это простое число
-    }
-    else {
-       cout << number << "  -This is not a simple number " << endl; // это не простое число
-    }
-   return 0;
-}
-
-int check_prime_number(int number){
-   bool flag = true;
-   for (int i = 2; i <= number / 2; ++i){
-      if(number%i ==0){
-         flag = false;
-         break;
-      }
+   if (isPrime(number))
+   {
+      cout << number << " - Это простое число" << endl;
    }
-   return flag;
+   else
+   {
+      cout << number << " - Это не простое число" << endl;
+   }
+   return 0;
 }
